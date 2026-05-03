@@ -6,7 +6,7 @@ import { Search, MapPin, SlidersHorizontal, X } from 'lucide-react'
 import CourseCard from '../components/ui/CourseCard'
 import Button from '../components/ui/Button'
 import Input from '../components/ui/Input'
-import { courses } from '../data/Courses'
+import { courses } from '../data/courses'
 
 const categories = ['All', 'IT & Technology', 'Cyber Security', 'Business', 'Health & Safety']
 const durations = ['Any', '1 Day', '3 Days', '5 Days', '12 Weeks']

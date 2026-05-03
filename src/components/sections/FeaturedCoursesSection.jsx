@@ -5,7 +5,7 @@ import { ArrowRight } from 'lucide-react'
 import { useNavigate } from 'react-router-dom'
 import CourseCard from '../ui/CourseCard'
 import Button from '../ui/Button'
-import { courses } from '../../data/Courses'
+import { courses } from '../../data/courses'
 
 // Filter tabs
 const filters = ['All', 'IT & Technology', 'Cyber Security', 'Business', 'Health & Safety']
