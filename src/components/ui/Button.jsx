@@ -1,17 +1,14 @@
-
 const variants = {
     primary: 'bg-blue-600 hover:bg-blue-700 text-white border-transparent',
     secondary: 'bg-slate-800 hover:bg-slate-700 text-white border-transparent',
     outline: 'bg-transparent hover:bg-blue-50 text-blue-600 border-blue-600',
     ghost: 'bg-transparent hover:bg-slate-100 text-slate-600 border-transparent',
 }
-
 const sizes = {
     sm: 'px-3 py-1.5 text-sm',
     md: 'px-5 py-2.5 text-sm',
     lg: 'px-7 py-3 text-base',
 }
-
 const Button = ({
     children,
     variant = 'primary',
@@ -41,5 +38,4 @@ const Button = ({
         </button>
     )
 }
-
 export default Button

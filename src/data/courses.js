@@ -1,5 +1,3 @@
-// src/data/courses.js
-
 export const courses = [
     {
         id: '1',

@@ -5,7 +5,6 @@ import Home from './pages/Home'
 import SearchResults from './pages/SearchResults'
 import CourseDetail from './pages/CourseDetail'
 import Booking from './pages/Booking'
-
 function App() {
   return (
     <BrowserRouter>
@@ -20,5 +19,4 @@ function App() {
     </BrowserRouter>
   )
 }
-
 export default App

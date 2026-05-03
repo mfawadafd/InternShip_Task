@@ -1,6 +1,4 @@
-
 import { Search } from 'lucide-react'
-
 const Input = ({
     type = 'text',
     placeholder = '',
@@ -15,21 +13,17 @@ const Input = ({
 }) => {
     return (
         <div className={`flex flex-col gap-1 ${fullWidth ? 'w-full' : ''}`}>
-
             {label && (
                 <label className="text-sm font-medium text-slate-700">
                     {label}
                 </label>
             )}
-
             <div className="relative">
-
                 {icon && iconPosition === 'left' && (
                     <div className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400">
                         {icon}
                     </div>
                 )}
-
                 <input
                     type={type}
                     placeholder={placeholder}
@@ -46,21 +40,16 @@ const Input = ({
             ${className}
           `}
                 />
-
                 {icon && iconPosition === 'right' && (
                     <div className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400">
                         {icon}
                     </div>
                 )}
-
             </div>
-
             {error && (
                 <p className="text-red-500 text-xs mt-0.5">{error}</p>
             )}
-
         </div>
     )
 }
-
 export default Input

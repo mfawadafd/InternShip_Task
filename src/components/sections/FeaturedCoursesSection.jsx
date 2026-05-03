@@ -1,29 +1,19 @@
-// src/components/sections/FeaturedCoursesSection.jsx
-
 import { useState } from 'react'
 import { ArrowRight } from 'lucide-react'
 import { useNavigate } from 'react-router-dom'
 import CourseCard from '../ui/CourseCard'
 import Button from '../ui/Button'
 import { courses } from '../../data/courses'
-
-// Filter tabs
 const filters = ['All', 'IT & Technology', 'Cyber Security', 'Business', 'Health & Safety']
-
 const FeaturedCoursesSection = () => {
     const [activeFilter, setActiveFilter] = useState('All')
     const navigate = useNavigate()
-
-    // Filter logic
     const filteredCourses = activeFilter === 'All'
         ? courses
         : courses.filter((c) => c.category === activeFilter)
-
     return (
         <section className="bg-slate-50 py-16 md:py-24">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-
-                {/* Section Header */}
                 <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-10">
                     <div>
                         <p className="text-blue-600 text-sm font-semibold uppercase tracking-widest mb-2">
@@ -36,8 +26,6 @@ const FeaturedCoursesSection = () => {
                             Handpicked courses with the highest ratings and enrollments.
                         </p>
                     </div>
-
-                    {/* View All Button */}
                     <Button
                         variant="outline"
                         size="md"
@@ -47,8 +35,6 @@ const FeaturedCoursesSection = () => {
                         View All Courses <ArrowRight size={15} />
                     </Button>
                 </div>
-
-                {/* Filter Tabs */}
                 <div className="flex flex-wrap gap-2 mb-8">
                     {filters.map((filter) => (
                         <button
@@ -64,8 +50,6 @@ const FeaturedCoursesSection = () => {
                         </button>
                     ))}
                 </div>
-
-                {/* Courses Grid */}
                 {filteredCourses.length > 0 ? (
                     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
                         {filteredCourses.map((course) => (
@@ -76,7 +60,6 @@ const FeaturedCoursesSection = () => {
                         ))}
                     </div>
                 ) : (
-                    // No results state
                     <div className="text-center py-16">
                         <p className="text-slate-400 text-lg">No courses found in this category.</p>
                         <button
@@ -87,10 +70,8 @@ const FeaturedCoursesSection = () => {
                         </button>
                     </div>
                 )}
-
             </div>
         </section>
     )
 }
-
 export default FeaturedCoursesSection

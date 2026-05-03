@@ -3,7 +3,6 @@ import {
     Monitor, Shield, Briefcase, HeartPulse,
     HardHat, Truck, FlameKindling, Leaf
 } from 'lucide-react'
-
 const categories = [
     { label: 'IT & Technology', icon: Monitor, color: 'bg-blue-50 text-blue-600', count: 120 },
     { label: 'Cyber Security', icon: Shield, color: 'bg-red-50 text-red-500', count: 85 },
@@ -14,18 +13,14 @@ const categories = [
     { label: 'Fire Safety', icon: FlameKindling, color: 'bg-rose-50 text-rose-500', count: 38 },
     { label: 'Environment', icon: Leaf, color: 'bg-teal-50 text-teal-600', count: 44 },
 ]
-
 const CategoriesSection = () => {
     const navigate = useNavigate()
-
     const handleCategoryClick = (label) => {
         navigate(`/courses?category=${encodeURIComponent(label)}`)
     }
-
     return (
         <section className="bg-slate-50 py-16 md:py-20">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-
                 <div className="text-center mb-12">
                     <p className="text-blue-600 text-sm font-semibold uppercase tracking-widest mb-2">
                         Browse by Category
@@ -37,7 +32,6 @@ const CategoriesSection = () => {
                         Explore courses across industries — from tech to safety to business.
                     </p>
                 </div>
-
                 <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
                     {categories.map(({ label, icon: Icon, color, count }) => (
                         <button
@@ -48,21 +42,17 @@ const CategoriesSection = () => {
                             <div className={`w-14 h-14 rounded-xl flex items-center justify-center mb-4 ${color} group-hover:scale-110 transition-transform duration-300`}>
                                 <Icon size={26} />
                             </div>
-
                             <h3 className="text-slate-700 font-semibold text-sm leading-snug mb-1">
                                 {label}
                             </h3>
-
                             <p className="text-slate-400 text-xs">
                                 {count} courses
                             </p>
                         </button>
                     ))}
                 </div>
-
             </div>
         </section>
     )
 }
-
 export default CategoriesSection
