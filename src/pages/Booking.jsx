@@ -1,3 +1,4 @@
+
 import { useState } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
 import {
@@ -7,16 +8,20 @@ import {
 import { courses } from '../data/courses'
 import Button from '../components/ui/Button'
 import Input from '../components/ui/Input'
+
 const availableDates = [
     '15 June 2025',
     '22 June 2025',
     '1 July 2025',
     '14 July 2025',
 ]
+
 const Booking = () => {
     const { id } = useParams()
     const navigate = useNavigate()
     const course = courses.find((c) => c.id === id)
+
+    // Form state
     const [selectedDate, setSelectedDate] = useState('')
     const [seats, setSeats] = useState(1)
     const [form, setForm] = useState({
@@ -27,6 +32,8 @@ const Booking = () => {
     })
     const [submitted, setSubmitted] = useState(false)
     const [errors, setErrors] = useState({})
+
+    // Course not found
     if (!course) {
         return (
             <div className="min-h-screen flex flex-col items-center justify-center bg-slate-50">
@@ -37,7 +44,10 @@ const Booking = () => {
             </div>
         )
     }
+
     const totalPrice = course.price * seats
+
+    // ── Validation ───────────────────────────────────
     const validate = () => {
         const newErrors = {}
         if (!form.firstName.trim()) newErrors.firstName = 'First name is required'
@@ -47,6 +57,8 @@ const Booking = () => {
         if (!selectedDate) newErrors.date = 'Please select a date'
         return newErrors
     }
+
+    // ── Submit Handler ───────────────────────────────
     const handleSubmit = () => {
         const newErrors = validate()
         if (Object.keys(newErrors).length > 0) {
@@ -55,6 +67,8 @@ const Booking = () => {
         }
         setSubmitted(true)
     }
+
+    // ── Success Screen ───────────────────────────────
     if (submitted) {
         return (
             <div className="min-h-screen bg-slate-50 flex items-center justify-center px-4">
@@ -72,6 +86,8 @@ const Booking = () => {
                         A confirmation email has been sent to{' '}
                         <span className="font-semibold">{form.email}</span>.
                     </p>
+
+                    {/* Booking Summary */}
                     <div className="bg-slate-50 rounded-2xl p-4 text-sm text-left mb-6 space-y-2">
                         <div className="flex justify-between">
                             <span className="text-slate-400">Course</span>
@@ -92,6 +108,7 @@ const Booking = () => {
                             </span>
                         </div>
                     </div>
+
                     <Button
                         variant="primary"
                         fullWidth
@@ -103,8 +120,12 @@ const Booking = () => {
             </div>
         )
     }
+
+    // ── Booking Form ─────────────────────────────────
     return (
         <div className="min-h-screen bg-slate-50">
+
+            {/* Header */}
             <div className="bg-slate-900 py-8">
                 <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
                     <button
@@ -117,9 +138,15 @@ const Booking = () => {
                     <p className="text-slate-400 text-sm mt-1">{course.title}</p>
                 </div>
             </div>
+
+            {/* Content */}
             <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
                 <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+
+                    {/* ── Left — Form ────────────────────────── */}
                     <div className="lg:col-span-2 space-y-6">
+
+                        {/* Step 1 — Select Date */}
                         <div className="bg-white rounded-2xl border border-slate-100 p-6 shadow-sm">
                             <h2 className="text-lg font-bold text-slate-800 mb-1">
                                 Step 1 — Select a Date
@@ -127,6 +154,7 @@ const Booking = () => {
                             <p className="text-slate-400 text-sm mb-5">
                                 Choose your preferred training date.
                             </p>
+
                             <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
                                 {availableDates.map((date) => (
                                     <button
@@ -150,6 +178,8 @@ const Booking = () => {
                                 <p className="text-red-500 text-xs mt-2">{errors.date}</p>
                             )}
                         </div>
+
+                        {/* Step 2 — Seats */}
                         <div className="bg-white rounded-2xl border border-slate-100 p-6 shadow-sm">
                             <h2 className="text-lg font-bold text-slate-800 mb-1">
                                 Step 2 — Number of Seats
@@ -157,6 +187,7 @@ const Booking = () => {
                             <p className="text-slate-400 text-sm mb-5">
                                 How many people are attending?
                             </p>
+
                             <div className="flex items-center gap-4">
                                 <button
                                     onClick={() => setSeats((s) => Math.max(1, s - 1))}
@@ -178,6 +209,8 @@ const Booking = () => {
                                 </span>
                             </div>
                         </div>
+
+                        {/* Step 3 — Personal Details */}
                         <div className="bg-white rounded-2xl border border-slate-100 p-6 shadow-sm">
                             <h2 className="text-lg font-bold text-slate-800 mb-1">
                                 Step 3 — Your Details
@@ -185,6 +218,7 @@ const Booking = () => {
                             <p className="text-slate-400 text-sm mb-5">
                                 Enter the lead attendee's information.
                             </p>
+
                             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                                 <Input
                                     label="First Name"
@@ -226,10 +260,16 @@ const Booking = () => {
                                 />
                             </div>
                         </div>
+
                     </div>
+
+                    {/* ── Right — Order Summary ───────────────── */}
                     <div className="space-y-6">
                         <div className="bg-white rounded-2xl border border-slate-100 p-6 shadow-sm sticky top-6">
+
                             <h3 className="text-base font-bold text-slate-800 mb-4">Order Summary</h3>
+
+                            {/* Course Info */}
                             <div className="pb-4 border-b border-slate-100 space-y-2 text-sm">
                                 <p className="font-semibold text-slate-700 leading-snug">{course.title}</p>
                                 <div className="flex items-center gap-1.5 text-slate-400">
@@ -246,6 +286,8 @@ const Booking = () => {
                                     <Users size={13} /> {seats} seat{seats > 1 ? 's' : ''}
                                 </div>
                             </div>
+
+                            {/* Price Breakdown */}
                             <div className="py-4 border-b border-slate-100 space-y-2 text-sm">
                                 <div className="flex justify-between text-slate-500">
                                     <span>Price per seat</span>
@@ -256,12 +298,15 @@ const Booking = () => {
                                     <span>× {seats}</span>
                                 </div>
                             </div>
+
+                            {/* Total */}
                             <div className="flex justify-between items-center pt-4 mb-6">
                                 <span className="font-bold text-slate-800">Total</span>
                                 <span className="text-2xl font-bold text-blue-600">
                                     {course.price === 0 ? 'Free' : `£${totalPrice}`}
                                 </span>
                             </div>
+
                             <Button
                                 variant="primary"
                                 fullWidth
@@ -270,14 +315,18 @@ const Booking = () => {
                             >
                                 Confirm Booking
                             </Button>
+
                             <p className="text-center text-slate-400 text-xs mt-3">
                                 Free cancellation within 24 hours
                             </p>
+
                         </div>
                     </div>
+
                 </div>
             </div>
         </div>
     )
 }
+
 export default Booking
